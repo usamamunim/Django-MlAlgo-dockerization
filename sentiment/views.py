@@ -1,3 +1,10 @@
-from django.shortcuts import render
+from django.http import JsonResponse
+from .model import analyze_sentiment
 
-# Create your views here.
+def analyze_sentiment_view(request):
+    if request.method == "GET":
+        text = request.GET.get("text", "")
+        sentiment = analyze_sentiment(text)
+        return JsonResponse({"sentiment": sentiment})
+    else:
+        return JsonResponse({"error": "Invalid request method"})
