@@ -7,3 +7,9 @@ services:
     ports:
       - 8000:8000
     command: python manage.py runserver 0.0.0.0:8000
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus:/etc/prometheus/
+    ports:
+      - 9090:9090
